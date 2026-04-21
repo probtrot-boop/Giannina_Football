@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Einfach Fußball – Die wichtigsten Regeln</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #2d7a3a;
+    --green-light: #3a9e4b;
+    --green-dark: #1a5226;
+    --pitch: #4CAF50;
+    --white: #f9f9f5;
+    --red: #e63946;
+    --yellow: #f4d03f;
+    --card-bg: #ffffff;
+    --text: #1a1a2e;
+    --muted: #666;
+    --border: #dde8d0;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: #0e3d1a;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(255,255,255,0.03) 40px, rgba(255,255,255,0.03) 41px),
+      repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(255,255,255,0.03) 40px, rgba(255,255,255,0.03) 41px);
+    min-height: 100vh;
+    color: var(--text);
+  }
+
+  header {
+    background: linear-gradient(135deg, #0e3d1a 0%, #1a6b2e 50%, #0e3d1a 100%);
+    border-bottom: 4px solid var(--yellow);
+    padding: 2.5rem 1rem 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 50% 120%, rgba(76,175,80,0.3) 0%, transparent 70%);
+  }
+  header .emoji-ball {
+    font-size: 3.5rem;
+    display: block;
+    animation: spin 8s linear infinite;
+    margin-bottom: 0.5rem;
+  }
+  @keyframes spin {
+    0%   { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  header h1 {
+    font-family: 'Bebas Neue', cursive;
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    color: var(--white);
+    letter-spacing: 3px;
+    line-height: 1;
+    position: relative;
+  }
+  header p {
+    color: var(--yellow);
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 0.4rem;
+    position: relative;
+  }
+
+  nav {
+    background: #0a2e12;
+    padding: 0.6rem 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    justify-content: center;
+    border-bottom: 2px solid var(--green-dark);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  nav a {
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 0.3rem 0.7rem;
+    border-radius: 20px;
+    transition: all 0.2s;
+    border: 1px solid transparent;
+  }
+  nav a:hover {
+    background: var(--green);
+    color: white;
+    border-color: var(--green-light);
+  }
+
+  main {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 2rem 1rem 4rem;
+  }
+
+  .section {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 1.8rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    border-top: 5px solid var(--green);
+    animation: fadeUp 0.4s ease both;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .section-icon {
+    font-size: 2rem;
+    margin-bottom: 0.4rem;
+    display: block;
+  }
+  .section h2 {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 1.8rem;
+    color: var(--green-dark);
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .section h2::after {
+    content: '';
+    flex: 1;
+    height: 2px;
+    background: var(--border);
+    margin-left: 0.5rem;
+  }
+
+  p { line-height: 1.7; color: #333; margin-bottom: 0.8rem; font-size: 0.98rem; }
+
+  .fact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 0.8rem;
+    margin-top: 1rem;
+  }
+  .fact-box {
+    background: linear-gradient(135deg, #f0f7f1, #e8f5e9);
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    padding: 1rem 0.8rem;
+    text-align: center;
+  }
+  .fact-box .num {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 2.2rem;
+    color: var(--green);
+    line-height: 1;
+  }
+  .fact-box .label {
+    font-size: 0.78rem;
+    color: var(--muted);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 0.2rem;
+  }
+
+  ul.rule-list {
+    list-style: none;
+    margin-top: 0.8rem;
+  }
+  ul.rule-list li {
+    padding: 0.5rem 0 0.5rem 1.8rem;
+    position: relative;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.95rem;
+  }
+  ul.rule-list li:last-child { border-bottom: none; }
+  ul.rule-list li::before {
+    content: '⚽';
+    position: absolute;
+    left: 0;
+    font-size: 0.9rem;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 0.2rem 0.7rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .badge-yellow { background: var(--yellow); color: #333; }
+  .badge-red    { background: var(--red); color: white; }
+  .badge-green  { background: var(--green); color: white; }
+
+  .card-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8rem;
+    margin-top: 0.8rem;
+  }
+  .card-mini {
+    padding: 1rem;
+    border-radius: 12px;
+    border: 2px solid;
+  }
+  .card-mini.yellow { border-color: var(--yellow); background: #fffbea; }
+  .card-mini.red    { border-color: var(--red);    background: #fff0f0; }
+  .card-mini h4 { font-size: 0.9rem; font-weight: 800; margin-bottom: 0.4rem; }
+  .card-mini p  { font-size: 0.82rem; margin: 0; }
+
+  /* QUIZ */
+  #quiz-section {
+    border-top-color: var(--yellow);
+  }
+  #quiz-section h2 {
+    color: #7a5500;
+  }
+  .quiz-progress {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.2rem;
+    font-size: 0.85rem;
+    color: var(--muted);
+    font-weight: 700;
+  }
+  .progress-bar-wrap {
+    flex: 1;
+    height: 6px;
+    background: var(--border);
+    border-radius: 10px;
+    margin: 0 1rem;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--green), var(--yellow));
+    border-radius: 10px;
+    transition: width 0.4s ease;
+  }
+
+  .question-card {
+    background: #fffdf4;
+    border: 2px solid #f0d870;
+    border-radius: 14px;
+    padding: 1.4rem;
+    margin-bottom: 1rem;
+  }
+  .question-card p.q-text {
+    font-weight: 700;
+    font-size: 1rem;
+    color: #2a2a2a;
+    margin-bottom: 1.2rem;
+  }
+  .options { display: flex; flex-direction: column; gap: 0.6rem; }
+  .option-btn {
+    background: white;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    padding: 0.75rem 1rem;
+    text-align: left;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.18s;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .option-btn .opt-letter {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: #eee;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.8rem; font-weight: 800;
+    flex-shrink: 0;
+    transition: background 0.18s;
+  }
+  .option-btn:hover:not(:disabled) {
+    border-color: var(--green);
+    background: #f0f9f1;
+  }
+  .option-btn:hover:not(:disabled) .opt-letter {
+    background: var(--green);
+    color: white;
+  }
+  .option-btn.correct {
+    border-color: var(--green);
+    background: #e8f5e9;
+  }
+  .option-btn.correct .opt-letter { background: var(--green); color: white; }
+  .option-btn.wrong {
+    border-color: var(--red);
+    background: #ffeaea;
+  }
+  .option-btn.wrong .opt-letter { background: var(--red); color: white; }
+  .option-btn:disabled { cursor: default; }
+
+  .feedback-msg {
+    padding: 0.8rem 1rem;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 0.92rem;
+    margin-top: 0.8rem;
+    display: none;
+  }
+  .feedback-msg.show { display: block; animation: fadeUp 0.2s ease; }
+  .feedback-msg.ok  { background: #e8f5e9; color: #1a5226; border-left: 4px solid var(--green); }
+  .feedback-msg.nok { background: #ffeaea; color: #7a0000; border-left: 4px solid var(--red); }
+
+  .quiz-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+    gap: 0.5rem;
+  }
+  .btn {
+    background: var(--green);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 0.7rem 1.4rem;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: background 0.2s;
+    letter-spacing: 0.5px;
+  }
+  .btn:hover { background: var(--green-light); }
+  .btn:disabled { opacity: 0.4; cursor: default; }
+  .btn.btn-yellow { background: #d4a000; }
+  .btn.btn-yellow:hover { background: #e6b800; }
+
+  #result-screen {
+    display: none;
+    text-align: center;
+    padding: 1rem;
+  }
+  #result-screen .trophy { font-size: 4rem; margin-bottom: 0.5rem; }
+  #result-screen h3 {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 2.5rem;
+    color: var(--green-dark);
+    letter-spacing: 2px;
+  }
+  #result-screen .score-num {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 4rem;
+    color: var(--green);
+    line-height: 1;
+  }
+  #result-screen p { font-size: 1rem; color: var(--muted); margin-top: 0.5rem; }
+  #result-screen .restart-btn {
+    margin-top: 1.5rem;
+    background: var(--green);
+    color: white;
+    border: none;
+    padding: 0.9rem 2.5rem;
+    border-radius: 12px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  #result-screen .restart-btn:hover { background: var(--green-light); }
+
+  footer {
+    text-align: center;
+    padding: 1.5rem;
+    color: rgba(255,255,255,0.4);
+    font-size: 0.78rem;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <span class="emoji-ball">⚽</span>
+  <h1>Einfach Fußball</h1>
+  <p>Die wichtigsten Regeln – einfach erklärt</p>
+</header>
+
+<nav>
+  <a href="#spielfeld">🏟 Spielfeld</a>
+  <a href="#spieldauer">⏱ Spieldauer</a>
+  <a href="#spieler">👥 Spieler</a>
+  <a href="#ball">⚽ Ball</a>
+  <a href="#schiedsrichter">🟨 Schiedsrichter</a>
+  <a href="#ins-spiel">🔄 Ins Spiel</a>
+  <a href="#tor">🥅 Tor</a>
+  <a href="#verboten">🚫 Verboten</a>
+  <a href="#strafen">🟥 Strafen</a>
+  <a href="#quiz-section">🧠 Quiz</a>
+</nav>
+
+<main>
+
+  <!-- SPIELFELD -->
+  <div class="section" id="spielfeld">
+    <span class="section-icon">🏟️</span>
+    <h2>Das Spielfeld</h2>
+    <p>Die FIFA hat die Maße für Fußballfelder festgelegt. Das Spielfeld hat klare Grenzen und besondere Zonen.</p>
+    <div class="fact-grid">
+      <div class="fact-box"><div class="num">100–110</div><div class="label">Meter Länge</div></div>
+      <div class="fact-box"><div class="num">64–75</div><div class="label">Meter Breite</div></div>
+      <div class="fact-box"><div class="num">7,32</div><div class="label">Meter Torbreite</div></div>
+      <div class="fact-box"><div class="num">2,44</div><div class="label">Meter Torhöhe</div></div>
+    </div>
+    <p style="margin-top:1rem;">Das Feld ist mit Linien markiert: <strong>Seitenlinie</strong>, <strong>Torlinie</strong>, <strong>Mittellinie</strong>. Dazu gibt es den <strong>Torraum</strong>, den <strong>Strafraum</strong>, den <strong>Elfmeterpunkt</strong> und die <strong>Ecken</strong>.</p>
+  </div>
+
+  <!-- SPIELDAUER -->
+  <div class="section" id="spieldauer">
+    <span class="section-icon">⏱️</span>
+    <h2>Die Spieldauer</h2>
+    <p>Ein Fußballspiel besteht aus <strong>zwei Hälften à 45 Minuten</strong>. Die Halbzeitpause dauert höchstens 15 Minuten. Der Schiedsrichter kann Nachspielzeit ansetzen.</p>
+    <ul class="rule-list">
+      <li><strong>Verlängerung:</strong> Bei K.-o.-Spielen mit Unentschieden: 2 × 15 Minuten extra</li>
+      <li><strong>Elfmeterschießen:</strong> Kein Sieger nach Verlängerung → je 5 Schützen pro Team, dann weiter bis zur Entscheidung</li>
+    </ul>
+  </div>
+
+  <!-- SPIELER -->
+  <div class="section" id="spieler">
+    <span class="section-icon">👥</span>
+    <h2>Die Spieler</h2>
+    <div class="fact-grid">
+      <div class="fact-box"><div class="num">11</div><div class="label">Spieler pro Team</div></div>
+      <div class="fact-box"><div class="num">1</div><div class="label">Torwart</div></div>
+      <div class="fact-box"><div class="num">3</div><div class="label">Max. Auswechslungen</div></div>
+    </div>
+    <p style="margin-top:1rem;">Der <strong>Torwart</strong> ist der einzige Spieler, der den Ball mit den Händen spielen darf – aber nur im eigenen Strafraum.</p>
+  </div>
+
+  <!-- BALL -->
+  <div class="section" id="ball">
+    <span class="section-icon">⚽</span>
+    <h2>Der Ball</h2>
+    <div class="fact-grid">
+      <div class="fact-box"><div class="num">68–70</div><div class="label">cm Umfang</div></div>
+      <div class="fact-box"><div class="num">410–450</div><div class="label">g Gewicht</div></div>
+    </div>
+  </div>
+
+  <!-- SCHIEDSRICHTER -->
+  <div class="section" id="schiedsrichter">
+    <span class="section-icon">🟨</span>
+    <h2>Schiedsrichter & Assistenten</h2>
+    <p>Der Schiedsrichter leitet das Spiel und achtet auf die Regeleinhaltung. Er hat zwei <strong>Assistenten</strong>, die am Spielfeldrand laufen.</p>
+    <p>Die Assistenten geben Zeichen bei:</p>
+    <ul class="rule-list">
+      <li>Ball ausserhalb des Feldes</li>
+      <li>Eckstoß, Abstoß oder Einwurf</li>
+      <li>Abseits-Situationen</li>
+      <li>Auswechslungen</li>
+      <li>Situationen, die der Schiedsrichter nicht gesehen hat</li>
+    </ul>
+    <p style="margin-top:0.8rem;">⚠️ Der Schiedsrichter muss nicht auf seine Assistenten hören – er entscheidet allein.</p>
+  </div>
+
+  <!-- INS SPIEL -->
+  <div class="section" id="ins-spiel">
+    <span class="section-icon">🔄</span>
+    <h2>So kommt der Ball ins Spiel</h2>
+    <ul class="rule-list">
+      <li><strong>Anstoß:</strong> Zu Spielbeginn, nach einem Tor und zu Beginn der Verlängerung – Ball liegt auf dem Mittelpunkt</li>
+      <li><strong>Abstoß:</strong> Ball hinter Torlinie, zuletzt von angreifender Mannschaft berührt → Torwart schießt aus dem Torraum</li>
+      <li><strong>Eckstoß:</strong> Ball hinter Torlinie, zuletzt von verteidigender Mannschaft berührt → Gegner schießt von der Ecke</li>
+      <li><strong>Einwurf:</strong> Ball über Seitenlinie → Gegner wirft mit beiden Händen von hinten über den Kopf ein</li>
+    </ul>
+  </div>
+
+  <!-- TOR -->
+  <div class="section" id="tor">
+    <span class="section-icon">🥅</span>
+    <h2>Tor</h2>
+    <p>Ein Tor zählt nur, wenn der Ball die <strong>Torlinie vollständig überquert</strong> hat – zwischen den Pfosten und unter der Latte. Die Mannschaft mit den meisten Toren gewinnt.</p>
+  </div>
+
+  <!-- VERBOTEN -->
+  <div class="section" id="verboten">
+    <span class="section-icon">🚫</span>
+    <h2>Verboten</h2>
+    <p><strong>Abseits</strong> – ein Spieler steht im Abseits, wenn alle 4 Bedingungen zutreffen:</p>
+    <ul class="rule-list">
+      <li>Er ist näher an der gegnerischen Torlinie als der vorletzte Gegenspieler</li>
+      <li>Er steht zwischen Ball und gegnerischem Tor</li>
+      <li>Ein Mitspieler spielt ihm den Ball zu</li>
+      <li>Er befindet sich in der gegnerischen Hälfte</li>
+    </ul>
+    <p style="margin-top:0.8rem;">❌ Kein Abseits bei: Abstoß, Einwurf, Eckstoß.</p>
+    <p><strong>Foul</strong> – verbotenes Berühren: Treten, Beinstellen, Anspringen, Schlagen, Stoßen, Bedrängen, Festhalten.</p>
+    <p><strong>Handspiel</strong> – nur verboten, wenn <em>absichtlich</em> mit Hand oder Arm gespielt wird.</p>
+    <p><strong>Schwalbe</strong> – so tun als ob man gefoult wurde, ist verboten.</p>
+    <p><strong>Rückpass-Regel:</strong> Spielt ein Spieler den Ball mit dem Fuß zum eigenen Torwart zurück, darf dieser ihn nicht mit den Händen aufnehmen.</p>
+  </div>
+
+  <!-- STRAFEN -->
+  <div class="section" id="strafen">
+    <span class="section-icon">🟥</span>
+    <h2>Die Strafen</h2>
+    <p><strong>Freistoß:</strong> Direkter Freistoß bei Fouls und Handspiel (Tor zählt direkt). Indirekter Freistoß z.B. bei gefährlichem Spiel oder Abseits (Tor zählt nur mit Berührung).</p>
+    <p><strong>Elfmeter:</strong> Foul, Handspiel oder Anspucken im eigenen Strafraum → Ball auf den Elfmeterpunkt (11 m vor Tor). Alle anderen Spieler mindestens 9,15 m entfernt.</p>
+    <div class="card-pair">
+      <div class="card-mini yellow">
+        <h4>🟨 Gelbe Karte</h4>
+        <p>Verwarnung. Bei: unsportlichem Verhalten, mehrfachen Regelverstößen, Widerspruch, Trödeln, Trikot über Kopf ziehen beim Jubeln.</p>
+      </div>
+      <div class="card-mini red">
+        <h4>🟥 Rote Karte</h4>
+        <p>Platzverweis, kein Ersatz. Bei: schwerem Foul, Anspucken, Handspiel zur Torverhinderung, klare Torchance verhindern, Beleidigung, Gelb+Gelb.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUIZ -->
+  <div class="section" id="quiz-section">
+    <span class="section-icon">🧠</span>
+    <h2>Quiz – Teste dein Wissen</h2>
+
+    <div id="quiz-content">
+      <div class="quiz-progress">
+        <span id="q-counter">Frage 1 / 7</span>
+        <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progress-fill" style="width:0%"></div></div>
+        <span id="q-score">✅ 0</span>
+      </div>
+
+      <div class="question-card" id="question-card">
+        <p class="q-text" id="q-text"></p>
+        <div class="options" id="options-container"></div>
+        <div class="feedback-msg" id="feedback-msg"></div>
+      </div>
+
+      <div class="quiz-nav">
+        <span style="font-size:0.82rem;color:#999;font-weight:700;" id="q-hint"></span>
+        <button class="btn" id="next-btn" onclick="nextQuestion()" disabled>Weiter →</button>
+      </div>
+    </div>
+
+    <div id="result-screen">
+      <div class="trophy" id="trophy-icon">🏆</div>
+      <h3 id="result-title">Ergebnis</h3>
+      <div class="score-num" id="final-score">0/7</div>
+      <p id="result-msg"></p>
+      <button class="restart-btn" onclick="restartQuiz()">🔄 Nochmal spielen</button>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  Quelle: Aktion Mensch – „Einfach Fußball" (Leichte Sprache) · andereslernen.de
+</footer>
+
+<script>
+const questions = [
+  {
+    q: "Wie viele Spieler hat eine Fußballmannschaft auf dem Spielfeld?",
+    options: ["9", "11", "12", "10"],
+    correct: 1,
+    explanation: "Jede Mannschaft hat genau 11 Spieler: 10 Feldspieler + 1 Torwart."
+  },
+  {
+    q: "Wie lange dauert eine Halbzeit im Fußball?",
+    options: ["30 Minuten", "40 Minuten", "45 Minuten", "60 Minuten"],
+    correct: 2,
+    explanation: "Eine Halbzeit dauert 45 Minuten. Das Spiel hat zwei Hälften = 90 Minuten."
+  },
+  {
+    q: "Mesut Özil spielt den Ball von der Eckfahne in den Strafraum. Thomas Müller hat nur noch den Torwart vor sich und erzielt ein Tor. Zählt der Treffer?",
+    options: [
+      "Ja, im Strafraum gibt es kein Abseits.",
+      "Ja, weil Müller hinter dem Ball stand.",
+      "Nein, weil Müller keine zwei Gegenspieler vor sich hatte – Abseits!"
+    ],
+    correct: 1,
+    explanation: "Richtig: Kein Abseits nach einem Eckstoß! Müller stand hinter dem Ball, als Özil spielte – kein Abseits."
+  },
+  {
+    q: "Wann gibt es einen Elfmeter?",
+    options: [
+      "Bei jedem Foul, egal wo auf dem Feld",
+      "Nur wenn der Torwart den Ball mit der Hand hält",
+      "Bei Foul, Handspiel oder Anspucken im eigenen Strafraum"
+    ],
+    correct: 2,
+    explanation: "Elfmeter gibt es nur bei einem Vergehen im eigenen Strafraum (Foul, absichtliches Handspiel, Anspucken)."
+  },
+  {
+    q: "Mario Götze erzielt ein Tor und zieht aus Freude sein Trikot über den Kopf. Was passiert?",
+    options: [
+      "Das Tor zählt, Götze bekommt die Gelbe Karte.",
+      "Das Tor zählt, Götze bekommt die Rote Karte.",
+      "Beim Torjubel ist alles erlaubt – keine Strafe."
+    ],
+    correct: 0,
+    explanation: "Das Tor zählt, aber zu übertriebener Jubel (Trikot über den Kopf) wird mit der Gelben Karte bestraft."
+  },
+  {
+    q: "Mats Hummels streckt sein Bein hoch im eigenen Strafraum, um den Ball zu schießen. Bayern-Spieler Mandzukic weicht aus. Wie entscheidet der Schiedsrichter?",
+    options: [
+      "Indirekter Freistoß für Bayern wegen gefährlichen Spiels.",
+      "Elfmeter für Bayern, weil es im Strafraum passierte.",
+      "Das Spiel läuft weiter, weil Mandzukic nicht getroffen wurde."
+    ],
+    correct: 0,
+    explanation: "Gefährliches Spiel wird mit einem indirekten Freistoß bestraft – auch wenn niemand berührt wurde."
+  },
+  {
+    q: "Marco Reus läuft auf das Tor zu. Der gegnerische Torwart holt ihn im Strafraum mit einem Tritt von den Beinen. Was folgt?",
+    options: [
+      "Elfmeter für Deutschland + Gelbe Karte für den Torwart",
+      "Elfmeter für Deutschland + keine Karte (Torwart hat andere Rechte)",
+      "Elfmeter für Deutschland + Rote Karte für den Torwart"
+    ],
+    correct: 2,
+    explanation: "Der Torwart verhindert eine klare Torchance mit einem Foul – das gibt Elfmeter UND Rote Karte."
+  },
+  {
+    q: "Ein Spieler foult seinen Gegner ausserhalb des Strafraums. Der Freistoß wird ausgeführt und der Ball fliegt direkt ins Tor – ohne einen anderen Spieler zu berühren. Zählt das Tor?",
+    options: [
+      "Ja, der Ball ist direkt ins Tor – das zählt immer.",
+      "Ja, aber nur wenn der Schiedsrichter es erlaubt.",
+      "Nein, bei einem indirekten Freistoß muss der Ball zuerst einen anderen Spieler berühren.",
+      "Nein, ausserhalb des Strafraums zählen Freistösse nie direkt."
+    ],
+    correct: 0,
+    explanation: "Bei einem Foul gibt es einen direkten Freistoß – ein Tor zählt direkt, ohne Zwischenberührung."
+  },
+  {
+    q: "Der Torwart nimmt einen Rückpass mit dem Fuß entgegen und hebt den Ball mit den Händen auf. Was entscheidet der Schiedsrichter?",
+    options: [
+      "Elfmeter für den Gegner – Handspiel im Strafraum.",
+      "Indirekter Freistoß für den Gegner – Rückpass-Regel verletzt.",
+      "Direkter Freistoß für den Gegner.",
+      "Nichts – der Torwart darf das im eigenen Strafraum."
+    ],
+    correct: 1,
+    explanation: "Rückpass mit dem Fuß → Torwart darf nicht mit den Händen nehmen. Strafe: indirekter Freistoß für den Gegner."
+  }
+];
+
+let current = 0;
+let score = 0;
+let answered = false;
+
+function renderQuestion() {
+  const q = questions[current];
+  document.getElementById('q-text').textContent = q.q;
+  document.getElementById('q-counter').textContent = `Frage ${current + 1} / ${questions.length}`;
+
+  document.getElementById('q-score').textContent = `✅ ${score}`;
+  document.getElementById('progress-fill').style.width = `${(current / questions.length) * 100}%`;
+  document.getElementById('next-btn').disabled = true;
+  document.getElementById('q-hint').textContent = '';
+
+  const feedback = document.getElementById('feedback-msg');
+  feedback.className = 'feedback-msg';
+  feedback.textContent = '';
+
+  const letters = ['A', 'B', 'C', 'D'];
+  const container = document.getElementById('options-container');
+  container.innerHTML = '';
+  q.options.forEach((opt, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'option-btn';
+    btn.innerHTML = `<span class="opt-letter">${letters[i]}</span>${opt}`;
+    btn.onclick = () => selectAnswer(i);
+    container.appendChild(btn);
+  });
+  answered = false;
+}
+
+function selectAnswer(idx) {
+  if (answered) return;
+  answered = true;
+
+  const q = questions[current];
+  const buttons = document.querySelectorAll('.option-btn');
+  const feedback = document.getElementById('feedback-msg');
+
+  buttons.forEach(b => b.disabled = true);
+  buttons[q.correct].classList.add('correct');
+
+  if (idx === q.correct) {
+    score++;
+    feedback.textContent = '✅ Richtig! ' + q.explanation;
+    feedback.className = 'feedback-msg ok show';
+  } else {
+    buttons[idx].classList.add('wrong');
+    feedback.textContent = '❌ Leider falsch. ' + q.explanation;
+    feedback.className = 'feedback-msg nok show';
+  }
+
+  document.getElementById('q-score').textContent = `✅ ${score}`;
+  document.getElementById('next-btn').disabled = false;
+  document.getElementById('next-btn').textContent = current < questions.length - 1 ? 'Weiter →' : 'Auswertung 🏁';
+}
+
+function nextQuestion() {
+  current++;
+  if (current >= questions.length) {
+    showResult();
+  } else {
+    renderQuestion();
+  }
+}
+
+function showResult() {
+  document.getElementById('quiz-content').style.display = 'none';
+  const r = document.getElementById('result-screen');
+  r.style.display = 'block';
+  r.style.animation = 'fadeUp 0.4s ease';
+
+  const pct = score / questions.length;
+  let trophy, title, msg;
+  if (pct === 1)        { trophy = '🏆'; title = 'Perfekt!'; msg = 'Du kennst die Fußballregeln wie ein Profi!'; }
+  else if (pct >= 0.7)  { trophy = '🥇'; title = 'Super!'; msg = 'Fast perfekt – du bist gut drauf!'; }
+  else if (pct >= 0.5)  { trophy = '🥈'; title = 'Gut gemacht!'; msg = 'Noch ein bisschen üben, dann sitzt es perfekt.'; }
+  else                  { trophy = '⚽'; title = 'Weiter üben!'; msg = 'Lies die Regeln nochmal durch und versuch es wieder!'; }
+
+  document.getElementById('trophy-icon').textContent = trophy;
+  document.getElementById('result-title').textContent = title;
+  document.getElementById('final-score').textContent = `${score} / ${questions.length}`;
+  document.getElementById('result-msg').textContent = msg;
+  document.getElementById('progress-fill').style.width = '100%';
+}
+
+function restartQuiz() {
+  current = 0;
+  score = 0;
+  document.getElementById('result-screen').style.display = 'none';
+  document.getElementById('quiz-content').style.display = 'block';
+  renderQuestion();
+}
+
+// Start
+renderQuestion();
+</script>
+</body>
+</html>
